@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+    <h1>{{slug}} Course</h1>
+ 
+    <form action="" method="post" class="form-group my-5" >
+        {%csrf_token%}
+        <p>This content is password protected. To view it please enter your password below:
+            Password:</p>
+        <input type="password" placeholder="enter password" name="password" class="form-control mb-2">
+        {% if messages %}
+        <div class="mb-2">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="color: red; list-style: none;">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} {% endif %}
+                {{ message }}
+                </li>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <button class="my-2 btn btn-success">submit</button>
+
+    </form>
+
+</div>
+
+{%endblock content%}
